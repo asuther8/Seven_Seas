@@ -18,26 +18,33 @@ def main():
         files[file] = (jsonToList(os.path.join(dataPath, file)))
 
     
+    torrentData = {}
     for k,v in files.items():
         totalTorrents = 0
-        name = ""
-        print(k,':     ')
         for list in v:
             for dict in list:
+                tempName = ""
+                tempScore = 0
                 for k, v in dict.items():
                     if "Torrents" in k:
-                        totalTorrents += int(v)
+                        tempScore = int(v)
                     if "Name" in k:
-                        name = v
+                        tempName = v.replace("\n","")
 
-                    print('   ',k.replace("\n",""), ' : ', v.replace("\n",""))
+                if tempName in torrentData:
+                    torrentData[tempName] += tempScore
+                else:
+                    torrentData[tempName] = tempScore
 
-        
-                print('\n')
-        print(name, ": ",totalTorrents,"\n")
-        plt.bar(1,totalTorrents,color='green')
-        plt.xlabel("Torrents")
-        plt.show()
+    print(torrentData)
+
+    plt.style.use('ggplot')
+    x_pos = [i for i, _ in enumerate(torrentData.keys())]
+    plt.bar(x_pos,torrentData.values(),color='green')
+    plt.xlabel("Media torrented")
+    plt.ylabel("Torrents in millions")
+    plt.xticks(x_pos,torrentData.keys())
+    plt.show()
 
 
 # Takes the path of each json file and returns it as a list of dictionaries
