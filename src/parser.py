@@ -17,27 +17,40 @@ def main():
         # Calls jsonToList on each file
         files[file] = (jsonToList(os.path.join(dataPath, file)))
 
-    
     torrentData = {}
     for k,v in files.items():
-        totalTorrents = 0
         for list in v:
+            oldestDate = 0
             for dict in list:
                 tempName = ""
                 tempScore = 0
+                
+                # iterating through each json file here
                 for k, v in dict.items():
                     if "Torrents" in k:
                         tempScore = int(v)
                     if "Name" in k:
                         tempName = v.replace("\n","")
-
+                    if "Date" in k:
+                        splitDate = v.split()
+                        if int(splitDate[2]) > oldestDate and splitDate[3] == "months":
+                            oldestDate = int(splitDate[2])
                 if tempName in torrentData:
                     torrentData[tempName] += tempScore
                 else:
                     torrentData[tempName] = tempScore
 
-    print(torrentData)
+            
 
+            
+
+
+
+            # calculating torrents per month
+            if oldestDate != 0:
+                torrentData[tempName] /= oldestDate
+
+    print(torrentData)
     plt.style.use('ggplot')
     x_pos = [i for i, _ in enumerate(torrentData.keys())]
     plt.bar(x_pos,torrentData.values(),color='green')
