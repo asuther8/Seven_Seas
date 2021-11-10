@@ -4,6 +4,17 @@ import matplotlib.pyplot as plt
 from os import path
 
 # Main function
+class show:
+    def __init__(self, name, service, total):
+        self.name = name
+        self.service = service
+        self.total = total
+class dataline:
+    def __init__(self, name, data, views, file){
+        self.name = name
+        self.data = data
+        self.views = views
+        self.file = file
 def main():
 
     # Attempts to form path where the data is located from current directory
