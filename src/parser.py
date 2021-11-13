@@ -55,6 +55,8 @@ def main():
                                 inlist = 1
                         if inlist == 0:
                             showlist.append(show(tempName, 0, 0))
+                        else: 
+                            inlist = 0
                         line.name = tempName
                     if "Torrents" in k:
                         tempScore = int(v)
