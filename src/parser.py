@@ -45,7 +45,7 @@ def main():
                     if "Name" in k:
                         tempName = v.replace("\n","")
                         for i in showlist:
-                            if i.name = tempName:
+                            if i.name == tempName:
                                 inlist = 1
                         if inlist == 0:
                             showlist.append(show(tempName, 0, 0))
@@ -59,7 +59,7 @@ def main():
                         if splitDate[3] == "years":
                             tempDate = int(splitDate[2]) * 12;
 
-                        else if splitDate[3] == "months":
+                        elif splitDate[3] == "months":
                                 tempDate = int(splitDate[2]);
                         for i in showlist:
                             if i.name == tempName:
@@ -79,7 +79,8 @@ def main():
             # calculating torrents per month
             if oldestDate != 0:
                 torrentData[tempName] /= oldestDate
-
+    for i in showlist:
+        print(i.name, i.date, i.views, sep=':')
     print(torrentData)
     plt.style.use('ggplot')
     x_pos = [i for i, _ in enumerate(torrentData.keys())]
