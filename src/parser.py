@@ -7,12 +7,6 @@ class show:
         self.name = name
         self.total = total
         self.date = date
-class dataline:
-    def __init__(self, name, date, views, file){
-        self.name = name
-        self.date = date
-        self.views = views
-        self.file = file
 
 # Main function
 def main():
@@ -49,6 +43,10 @@ def main():
                                 inlist = 1
                         if inlist == 0:
                             showlist.append(show(tempName, 0, 0))
+
+                        else: 
+                            inlist = 0
+               
                     if "Torrents" in k:
                         tempScore = int(v)
                         for i in showlist:
