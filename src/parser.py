@@ -5,7 +5,6 @@ from os import path
 class show:
     def __init__(self, name, service, total, date):
         self.name = name
-        self.service = service
         self.total = total
         self.date = date
          
@@ -90,12 +89,14 @@ def main():
     #plt.xticks(x_pos,showlist.keys())
     #plt.show()
 
+
 # Takes the path of each json file and returns it as a list of dictionaries
 def jsonToList(path):
 
+    jsonList = []
+
     with open(path, "r") as textFile:
         jsonString = textFile.read()
-        return json.loads(jsonString)
 
 # Lets main be above function declarations
 if __name__ == "__main__":
