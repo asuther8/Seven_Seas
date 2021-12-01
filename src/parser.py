@@ -93,10 +93,9 @@ def main():
 # Takes the path of each json file and returns it as a list of dictionaries
 def jsonToList(path):
 
-    jsonList = []
-
     with open(path, "r") as textFile:
         jsonString = textFile.read()
+        return json.loads(jsonString)
 
 # Lets main be above function declarations
 if __name__ == "__main__":
